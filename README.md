@@ -3,8 +3,10 @@
 Building a balanced binary search tree (BTS) from a given Array in JavaScript.
 
 
-<details><summary> Details</summary>
+<details><summary> Assignment</summary>
 
+<h3><a href="#assignment" class="anchor-link">Assignment</a></h3>
+<p>You’ll build a balanced BST in this assignment. Do not use duplicate values because they make it more complicated and result in trees that are much harder to balance. Therefore, be sure to always remove duplicate values or check for an existing value before inserting.</p>
 <ol>
 <li>
 <p>Build a <code>Node</code> class / factory.  It should have an attribute for the data it stores as well as its left and right children.</p>
