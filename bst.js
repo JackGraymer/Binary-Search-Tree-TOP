@@ -43,6 +43,28 @@ class Tree {
         return final
     }
 
+    insert(value, current = this.root){
+        let node = new Node(value)
+        console.log(current)
+        if (value < current.data){
+            if(current.left == null){
+                current.left = node
+                return
+            }else{
+                this.insert(value, current.left)
+            }
+        }else{
+            if(value > current.data){
+                if(value == null){
+                    current.right = node
+                }else{
+                    this.insert(value, current.right)
+                }
+            }
+        }
+
+    }
+
     find(value, current = this.root){
         
         if(current == null) {
@@ -75,6 +97,9 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 
 let tree = new Tree(arr)
 tree.buildTree(arr)
-prettyPrint(tree.buildTree(arr))
+prettyPrint(tree.root)
 //console.log(tree.buildTree(arr))
 tree.find(3)
+tree.insert(0)
+tree.insert(100)
+prettyPrint(tree.root)
