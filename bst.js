@@ -54,7 +54,7 @@ class Tree {
             }
         }else{
             if(value > current.data){
-                if(value == null){
+                if(current.right == null){
                     current.right = node
                 }else{
                     this.insert(value, current.right)
@@ -84,6 +84,7 @@ class Tree {
                     parent.left = null
                     return
                 }
+                //Delete Node with only 1 child
             }else if(current.left == null || current.right == null){
                 if (current.left == null){
                     if(current.data > parent.data){
@@ -100,6 +101,29 @@ class Tree {
                         parent.left = current.left
                     }
                     return
+                }
+                //Delete Node with 2 Children
+            }else if(current.left !== null && current.right !== null){
+                //Find the next biggest node to the one to be deleted
+                //That is achieved looking for the most left child on the right subtree
+                let biggerChild = current.right;
+                let biggerParent = current.right;
+                console.log(biggerChild)
+                while(biggerChild.left !== null){
+                    biggerParent = biggerChild
+                    biggerChild = biggerChild.left
+                    //console.log('biggerChild ', biggerChild.data, biggerParent.data)
+                }if(biggerChild.left == null && biggerChild.right == null){
+                    //Most left child is a leaf with no children
+                    console.log(biggerChild)
+                    let data = biggerChild.data
+                    this.delete(biggerChild.data)
+                    current.data = data
+
+                }else if (biggerChild.right !== null){
+                    current.data = biggerChild.data
+                    biggerParent.left = biggerChild.right
+                    console.log('almost there')
                 }
             }
             
@@ -148,15 +172,20 @@ tree.insert(0)
 tree.insert(100)
 prettyPrint(tree.root)
 console.log(tree.root.right.right.left)
-tree.delete(100)
+/* tree.delete(100)
 tree.delete(0)
 tree.delete(3)
-tree.delete(6345)
-tree.delete(324)
+tree.delete(6345) */
 prettyPrint(tree.root)
 tree.delete(9)
-tree.delete(5)
-tree.delete(7)
-tree.delete(4)
+//tree.insert(22)
 prettyPrint(tree.root)
-
+/* tree.delete(67)
+tree.insert(4.5) */
+tree.insert(24)
+tree.insert(4.1)
+tree.insert(4.2)
+tree.delete(4)
+tree.delete(8)
+tree.delete(4.1)
+prettyPrint(tree.root)
