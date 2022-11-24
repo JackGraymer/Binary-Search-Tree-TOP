@@ -17,7 +17,6 @@ class Node {
 class Tree {
     constructor(array){
         let root = null
-        let final = this.orderArray(array)
     }
 
     buildTree(array, left = 0, right = this.orderArray(array).length-1){
@@ -29,7 +28,7 @@ class Tree {
         let root = new Node(final[mid])
         root.left = this.buildTree(final, left, mid-1)
         root.right = this.buildTree(final, mid + 1, right)
-        console.log('root is ',root)
+        //console.log('root is ',root)
         return root
     }
 
@@ -42,5 +41,16 @@ class Tree {
     }
 }
 
+const prettyPrint = (node, prefix = '', isLeft = true) => {
+    if (node.right !== null) {
+      prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    if (node.left !== null) {
+      prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+  }
+
 let tree = new Tree(arr)
 tree.buildTree(arr)
+prettyPrint(tree.buildTree(arr))
