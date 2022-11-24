@@ -16,22 +16,31 @@ class Node {
 
 class Tree {
     constructor(array){
-        let root = this.buildTree(array)
+        let root = null
         let final = this.orderArray(array)
     }
 
-    buildTree(array){
-        //console.log(array)
+    buildTree(array, left = 0, right = this.orderArray(array).length-1){
+        if(left > right){
+            return null
+        }
+        let final = this.orderArray(array)
+        let mid = Math.floor((left + right)/2)
+        let root = new Node(final[mid])
+        root.left = this.buildTree(final, left, mid-1)
+        root.right = this.buildTree(final, mid + 1, right)
+        console.log('root is ',root)
+        return root
     }
 
     orderArray(array){
         array.sort(function(a, b){return a-b}) //sorts numbers in the correct numerical way, not alphabetical
-        console.log(`ordered array: ${array}`)
+        //console.log(`ordered array: ${array}`)
         let final = [...new Set(array)]
-        console.log(`final array: ${final}`)
+        //console.log(`final array: ${final}`)
         return final
     }
 }
 
 let tree = new Tree(arr)
-//tree.orderArray(arr)
+tree.buildTree(arr)
