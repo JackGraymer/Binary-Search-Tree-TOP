@@ -66,19 +66,44 @@ class Tree {
 
     delete(value, current = this.root, parent = null){
         if (this.find(value)!== null){
-            console.log('to be deleted ' + value)
+            //console.log('to be deleted ' + value)
             if(value < current.data){
                 return this.delete(value, current.left, current)
             }else if(value> current.data){
                 return this.delete(value, current.right, current)
             }else if (value == current.data){ 
-                console.log('we found it' , current.data, parent.data)
+                console.log('we found it' , current.data)
             //Node and its parent located
+
+            //Delete a leaf of the tree (Node without children)
+            if(current.left == null && current.right == null){
                 if(current.data == parent.right.data){
                     parent.right = null
+                    return
                 }else if(current.data == parent.left.data){
                     parent.left = null
+                    return
                 }
+            }else if(current.left == null || current.right == null){
+                if (current.left == null){
+                    if(current.data > parent.data){
+                        parent.right = current.right
+                    }else if(current.data< parent.data){
+                        parent.left = current.right
+                    }
+                    return
+                }else if(current.right == null){
+                    //parent.left = current.left
+                    if(current.data > parent.data){
+                        parent.right = current.left
+                    }else if(current.data< parent.data){
+                        parent.left = current.left
+                    }
+                    return
+                }
+            }
+            
+                
             }
 
         }
@@ -128,5 +153,10 @@ tree.delete(0)
 tree.delete(3)
 tree.delete(6345)
 tree.delete(324)
+prettyPrint(tree.root)
+tree.delete(9)
+tree.delete(5)
+tree.delete(7)
+tree.delete(4)
 prettyPrint(tree.root)
 
