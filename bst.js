@@ -45,7 +45,6 @@ class Tree {
 
     insert(value, current = this.root){
         let node = new Node(value)
-        console.log(current)
         if (value < current.data){
             if(current.left == null){
                 current.left = node
@@ -65,9 +64,30 @@ class Tree {
 
     }
 
+    delete(value, current = this.root, parent = null){
+        if (this.find(value)!== null){
+            console.log('to be deleted ' + value)
+            if(value < current.data){
+                return this.delete(value, current.left, current)
+            }else if(value> current.data){
+                return this.delete(value, current.right, current)
+            }else if (value == current.data){ 
+                console.log('we found it' , current.data, parent.data)
+            //Node and its parent located
+                if(current.data == parent.right.data){
+                    parent.right = null
+                }else if(current.data == parent.left.data){
+                    parent.left = null
+                }
+            }
+
+        }
+    }
+
     find(value, current = this.root){
         
         if(current == null) {
+            console.log('Not found')
             return null
         }
         if (value == current.data){
@@ -75,13 +95,12 @@ class Tree {
             return current
         }
         if(value < current.data){
-            this.find(value, current.left)
-            return
+            return this.find(value, current.left)
+            
         }else if(value > current.data){
-            this.find(value, current.right)
-            return 
+            return this.find(value, current.right)
+             
         }
-        console.log('not found')
     }
 }
 
@@ -103,3 +122,11 @@ tree.find(3)
 tree.insert(0)
 tree.insert(100)
 prettyPrint(tree.root)
+console.log(tree.root.right.right.left)
+tree.delete(100)
+tree.delete(0)
+tree.delete(3)
+tree.delete(6345)
+tree.delete(324)
+prettyPrint(tree.root)
+
