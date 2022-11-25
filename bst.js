@@ -151,6 +151,25 @@ class Tree {
              
         }
     }
+
+    levelOrder(root){
+        let values = [];
+        let queue = [];
+        queue.push(this.root)
+        while(queue.length > 0){
+            let current = queue.shift()
+            values.push(current.data)
+            if (current.left !== null){
+                queue.push(current.left)
+                
+            }
+            if(current.right !== null){
+                queue.push(current.right)
+            } 
+        }
+        console.log(values)
+        return values
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -189,3 +208,4 @@ tree.delete(4)
 tree.delete(8)
 tree.delete(4.1)
 prettyPrint(tree.root)
+tree.levelOrder()
