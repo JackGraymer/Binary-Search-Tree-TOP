@@ -170,6 +170,15 @@ class Tree {
         console.log(values)
         return values
     }
+
+    preOrder(root = this.root){
+        if(root !== null){
+            console.log(root)
+            this.preOrder(root.left)
+            this.preOrder(root.right)
+            return root
+        }
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -209,3 +218,4 @@ tree.delete(8)
 tree.delete(4.1)
 prettyPrint(tree.root)
 tree.levelOrder()
+tree.preOrder()
