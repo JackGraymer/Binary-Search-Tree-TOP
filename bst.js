@@ -179,6 +179,23 @@ class Tree {
             return root
         }
     }
+
+    inOrder (root = this.root){
+        if(root !== null){
+            this.inOrder(root.left)
+            console.log(root.data)
+            this.inOrder(root.right)
+            return root
+        }
+    }
+
+    postOrder(root = this.root){
+        if(root !== null){
+            this.postOrder(root.right)
+            console.log(root.data)
+            this.postOrder(root.left)
+        }
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -219,3 +236,6 @@ tree.delete(4.1)
 prettyPrint(tree.root)
 tree.levelOrder()
 tree.preOrder()
+prettyPrint(tree.root)
+tree.inOrder()
+tree.postOrder()
