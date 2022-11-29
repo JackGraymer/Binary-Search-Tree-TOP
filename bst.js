@@ -234,8 +234,29 @@ class Tree {
           
     return dist;
     }
-}
 
+    isBalanced(root = this.root){
+        if(root == null){
+            return 0}
+
+        let leftH = this.isBalanced(root.left);
+        if (leftH == -1){
+            return -1
+        }
+
+        let rightH = this.isBalanced(root.right)
+        if (rightH ==-1){
+            return -1
+        }
+        if (Math.abs(leftH - rightH) > 1){
+            //console.log('Max height is: ', leftH, rightH)
+            return -1
+        }else{
+            return (Math.max(leftH, rightH) +1)
+        }         
+    }
+}
+    
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node.right !== null) {
       prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
@@ -280,3 +301,9 @@ prettyPrint(tree.root)
 tree.inOrder()
 tree.postOrder()
 console.log(`node Depth is: `, tree.depth(0))
+console.log(tree.isBalanced())
+tree.insert(-1)
+tree.insert(-2)
+tree.insert(-3)
+prettyPrint(tree.root)
+console.log(tree.isBalanced())
