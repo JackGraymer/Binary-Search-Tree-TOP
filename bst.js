@@ -137,11 +137,11 @@ class Tree {
         
         if(current == null) {
             console.log('Not found')
-            return null
+            return false
         }
         if (value == current.data){
             console.log('found', current)
-            return current
+            return true
         }
         if(value < current.data){
             return this.find(value, current.left)
@@ -211,6 +211,29 @@ class Tree {
         }
         }else return 0
     }
+
+    depth(node, root = this.root){
+        if (root == null){
+            return -1  
+        }
+
+        let dist = -1
+
+        if(this.find(node) == true){
+            //console.log('continue')
+            if (root.data == node){
+                return dist+1
+            }if(root.left !==null && node < root.data){
+                dist = this.depth(node, root.left)
+                return dist+1
+            } if (root.right !==null && node > root.data ){
+                dist = this.depth(node, root.right)
+                return dist+1
+            }
+        }else return 'Node Not Found'
+          
+    return dist;
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -256,4 +279,4 @@ tree.preOrder()
 prettyPrint(tree.root)
 tree.inOrder()
 tree.postOrder()
-console.log(tree.height())
+console.log(`node Depth is: `, tree.depth(0))
