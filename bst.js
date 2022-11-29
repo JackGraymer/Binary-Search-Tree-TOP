@@ -192,9 +192,24 @@ class Tree {
     postOrder(root = this.root){
         if(root !== null){
             this.postOrder(root.right)
-            console.log(root.data)
             this.postOrder(root.left)
+            console.log(root.data)
         }
+    }
+
+    height(root = this.root){
+        if(root !== null){
+            let l = this.height(root.left)
+            let r = this.height(root.right)
+            
+            if (l>r){
+                return l+1
+
+            }else{
+            return r+1
+
+        }
+        }else return 0
     }
 }
 
@@ -208,6 +223,8 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     }
   }
 
+
+  //Test Driver
 let tree = new Tree(arr)
 tree.buildTree(arr)
 prettyPrint(tree.root)
@@ -239,3 +256,4 @@ tree.preOrder()
 prettyPrint(tree.root)
 tree.inOrder()
 tree.postOrder()
+console.log(tree.height())
