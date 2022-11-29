@@ -180,12 +180,12 @@ class Tree {
         }
     }
 
-    inOrder (root = this.root){
+    inOrder (root = this.root, nodes = []){
         if(root !== null){
-            this.inOrder(root.left)
-            console.log(root.data)
-            this.inOrder(root.right)
-            return root
+            this.inOrder(root.left, nodes)
+            nodes.push(root.data)
+            this.inOrder(root.right, nodes)
+            return nodes
         }
     }
 
@@ -307,3 +307,4 @@ tree.insert(-2)
 tree.insert(-3)
 prettyPrint(tree.root)
 console.log(tree.isBalanced())
+console.log(tree.inOrder())
