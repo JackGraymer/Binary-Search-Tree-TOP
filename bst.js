@@ -2,9 +2,15 @@
 
 //Binary Search Tree
 
-let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-//console.log('original array: '+ arr)
-
+let arr1 = []
+function randoms(){
+    
+    for(let i = 0; i<5; i++){
+        arr1.push(Math.floor(Math.random()*100))
+    } 
+}
+randoms()
+console.log(arr1)
 
 class Node {
     constructor(data, left = null, right = null){
@@ -262,9 +268,9 @@ class Tree {
             return 0
         }else{
             let newArray = this.inOrder()
-            tree = new Tree(newArray)
-            tree.buildTree(newArray)
-            return tree
+            test1 = new Tree(newArray)
+            test1.buildTree(newArray)
+            return test1
         }
     }
 }
@@ -279,61 +285,9 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     }
   }
 
-
-//Test Driver 1
-    let tree = new Tree(arr)
-    tree.buildTree(arr)
-    prettyPrint(tree.root)
-    //console.log(tree.buildTree(arr))
-    tree.find(3)
-    tree.insert(0)
-    tree.insert(100)
-    prettyPrint(tree.root)
-    console.log(tree.root.right.right.left)
-    /* tree.delete(100)
-    tree.delete(0)
-    tree.delete(3)
-    tree.delete(6345) */
-    prettyPrint(tree.root)
-    tree.delete(9)
-    //tree.insert(22)
-    prettyPrint(tree.root)
-    /* tree.delete(67)
-    tree.insert(4.5) */
-    tree.insert(24)
-    tree.insert(4.1)
-    tree.insert(4.2)
-    tree.delete(4)
-    tree.delete(8)
-    tree.delete(4.1)
-    prettyPrint(tree.root)
-    tree.levelOrder()
-    tree.preOrder()
-    prettyPrint(tree.root)
-    tree.inOrder()
-    tree.postOrder()
-    console.log(`node Depth is: `, tree.depth(0))
-    console.log(tree.isBalanced())
-    tree.insert(-1)
-    tree.insert(-2)
-    tree.insert(-3)
-    prettyPrint(tree.root)
-    console.log(tree.isBalanced())
-    console.log(tree.inOrder())
-    tree.rebalance()
-    prettyPrint(tree.root)
-
-
-    let arr1 = []
-function randoms(){
+  //Test Driver
     
-    for(let i = 0; i<5; i++){
-        arr1.push(Math.floor(Math.random()*100))
-    } 
-}
-randoms()
-console.log(arr1)
-let test1 = new Tree (arr1)
+    let test1 = new Tree (arr1)
     test1.buildTree(arr1)
     test1.inOrder()
     //test1.levelOrder()
@@ -349,12 +303,12 @@ let test1 = new Tree (arr1)
     console.log(test1.isBalanced())
     prettyPrint(test1.root)
     test1.rebalance()
-    prettyPrint(tree.root)
-    console.log(tree.isBalanced())
-    tree.levelOrder()
-    tree.preOrder()
-    tree.postOrder()
-    console.log(tree.inOrder())
+    prettyPrint(test1.root)
+    console.log(test1.isBalanced())
+    test1.levelOrder()
+    test1.preOrder()
+    test1.postOrder()
+    console.log(test1.inOrder())
 
 
 
